@@ -13,15 +13,21 @@ pipeline {
                 ])
             }
         }
-        //stage('Build') {
-           //steps {
-                // TODO: Add build steps here
-            //}
-        //}
+
         stage('Test') {
             steps {
                 sh 'npm install --save-dev mocha'
                 sh 'npm run test'
+            }
+        }
+        stage('Build') {
+           steps {
+                sh 'docker build -t Backend-api .'
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'docker push Backend-api:latest'
             }
         }
     }
