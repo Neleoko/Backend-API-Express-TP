@@ -22,12 +22,12 @@ pipeline {
         }
         stage('Build') {
            steps {
-                sh 'docker build -t Backend-api .'
+                sh 'docker build -t backend-api .'
             }
         }
         stage('Push') {
             steps {
-                sh 'docker push Backend-api:latest'
+                sh 'docker push backend-api:latest'
             }
         }
     }
