@@ -27,7 +27,11 @@ pipeline {
         }
         stage('Push') {
             steps {
-                sh 'docker push backend-api:latest'
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+                    docker.image('neleoko/backend-api').push('latest')
+                    }
+                }
             }
         }
     }
