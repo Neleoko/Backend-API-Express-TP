@@ -29,7 +29,7 @@ pipeline {
 
         stage('Push') {
             steps {
-                withCredentials([string(credentialsId: 'docker-hub-credentials', variable: 'DOCKER_PASSWORD')]) {
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'DOCKER_PASSWORD')]) {
                     sh 'echo "$DOCKER_PASSWORD" | docker login -u neleoko --password-stdin'
                     sh 'docker tag backend-api neleoko/backend-api:latest'
                     sh 'docker push neleoko/backend-api:latest'
